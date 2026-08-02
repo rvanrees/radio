@@ -19,23 +19,34 @@ export default function RadioPlayer({ streamUrl }: RadioPlayerProps) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    const markOffline = () => {
+      setListeners(null);
+      setOnline(false);
+      setPlaying(false);
+      audioRef.current?.pause();
+    };
+
     const update = async () => {
       try {
         const response = await fetch("/api/listeners", { cache: "no-store" });
-        if (!response.ok) return;
+        if (!response.ok) {
+          markOffline();
+          return;
+        }
         const data = (await response.json()) as {
           listeners: number | null;
           online?: boolean;
         };
         setListeners(data.listeners);
         setOnline(Boolean(data.online));
+        if (!data.online) markOffline();
       } catch {
-        // The stream remains usable when its stats endpoint is unavailable.
+        markOffline();
       }
     };
 
     void update();
-    const timer = window.setInterval(update, 30_000);
+    const timer = window.setInterval(update, 10_000);
     return () => window.clearInterval(timer);
   }, []);
 

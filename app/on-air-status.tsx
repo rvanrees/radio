@@ -19,7 +19,7 @@ export default function OnAirStatus() {
     };
 
     void checkStatus();
-    const timer = window.setInterval(checkStatus, 30_000);
+    const timer = window.setInterval(checkStatus, 10_000);
     return () => window.clearInterval(timer);
   }, []);
 
