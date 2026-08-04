@@ -6,9 +6,6 @@ export default function Home() {
 
   return (
     <main className="radio-shell">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-
       <section className="hero" id="top">
         <div className="hero-meta">
           <p className="eyebrow">Rechtstreeks vanuit Vriezenveen</p>

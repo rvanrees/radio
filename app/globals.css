@@ -1,7 +1,7 @@
 :root {
   --ink: #f1ebe4;
   --muted: #9f9691;
-  --night: #090909;
+  --night: #000;
   --accent: #c84940;
 }
 * {
@@ -29,38 +29,7 @@ input {
   min-height: 100svh;
   overflow: hidden;
   padding: 0 clamp(22px, 5vw, 78px);
-  background:
-    radial-gradient(circle at 76% 31%, #361311 0, #180d0c 28%, transparent 56%),
-    linear-gradient(115deg, #070707, #11100f 55%, #050505);
-}
-.radio-shell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.11;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-.ambient {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(2px);
-  opacity: 0.35;
-  pointer-events: none;
-}
-.ambient-one {
-  width: 430px;
-  height: 430px;
-  right: -210px;
-  top: 160px;
-  border: 1px solid #78312c;
-}
-.ambient-two {
-  width: 250px;
-  height: 250px;
-  right: 4%;
-  top: 260px;
-  border: 1px solid #4b2421;
+  background: #000;
 }
 .on-air {
   display: flex;

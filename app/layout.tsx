@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Radio van Rees",
-  description: "Rechtstreeks vanuit Vriezenveen.",
+  description: "De mooiste piratenhits.",
 };
 
 export default function RootLayout({
