@@ -15,13 +15,12 @@ export default function Home() {
           <OnAirStatus />
         </div>
         <h1>
-          100% vinyl
+          De mooiste
           <br />
           <em>piratenhits.</em>
         </h1>
         <RadioPlayer streamUrl={streamUrl} />
       </section>
-
     </main>
   );
 }

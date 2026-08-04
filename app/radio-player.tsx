@@ -52,7 +52,7 @@ export default function RadioPlayer({ streamUrl }: RadioPlayerProps) {
 
   const togglePlayback = async () => {
     const audio = audioRef.current;
-    if (!audio || !streamUrl) return;
+    if (!audio || !streamUrl || !online) return;
     setError(false);
 
     if (playing) {
@@ -79,11 +79,13 @@ export default function RadioPlayer({ streamUrl }: RadioPlayerProps) {
 
   const buttonLabel = !streamUrl
     ? "Configureer de stream"
-    : loading
-      ? "Verbinden…"
-      : playing
-        ? "Pauzeer radio"
-        : "Luister live";
+    : !online
+      ? "-"
+      : loading
+        ? "Verbinden…"
+        : playing
+          ? "Pauzeren"
+          : "Luisteren";
 
   return (
     <div className="player-wrap">
@@ -103,10 +105,10 @@ export default function RadioPlayer({ streamUrl }: RadioPlayerProps) {
       <div className="player-surface">
         <div className="player-card">
           <button
-            className="play-button"
+            className={`play-button ${online ? "" : "play-button-offline"}`}
             type="button"
             onClick={togglePlayback}
-            disabled={!streamUrl || loading}
+            disabled={!streamUrl || !online || loading}
             aria-label={buttonLabel}
           >
             {playing ? (
@@ -117,13 +119,9 @@ export default function RadioPlayer({ streamUrl }: RadioPlayerProps) {
           </button>
 
           <div className="track-info">
-            <span className="micro-label">Nu live</span>
-            <strong>
-              {streamUrl ? "Radio livestream" : "Stream nog niet ingesteld"}
-            </strong>
-            <span>
-              {error ? "Verbinding mislukt — probeer opnieuw" : buttonLabel}
-            </span>
+            <span className="micro-label">Status</span>
+            <strong>{online ? "Stream is online" : "Stream is offline"}</strong>
+            <span>{error ? "Verbinding mislukt" : buttonLabel}</span>
           </div>
 
           <div className="waveform" aria-hidden="true">
